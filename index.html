@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>adiew</title>
+  <meta name="description" content="adiew. unapologetic degen.">
+  <meta name="theme-color" content="#353535">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <style>
+    :root {
+      --bg: #353535;
+      --fg: #d8d8d8;
+      --dim: #8c8c8c;
+      --link: #e9e9e9;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Courier New", Courier, "Liberation Mono", monospace;
+      font-size: 17px;
+      line-height: 1.7;
+      text-transform: lowercase;
+      text-align: center;
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    main {
+      width: 100%;
+      max-width: 34rem;
+      padding: 2rem 1.5rem;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      font-weight: normal;
+      letter-spacing: -0.02em;
+    }
+    .bio { margin: 0.25rem 0 0; color: var(--dim); }
+    .cursor {
+      display: inline-block;
+      width: 0.6em;
+      height: 1.05em;
+      margin-left: 0.15em;
+      background: var(--fg);
+      vertical-align: text-bottom;
+      animation: blink 1.1s steps(1) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    hr {
+      border: 0;
+      border-top: 1px dashed var(--dim);
+      margin: 2.5rem 0;
+      opacity: 0.5;
+    }
+    .links { margin: 0; }
+    .links .sep { color: var(--dim); margin: 0 0.5em; }
+    a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { background: var(--fg); color: var(--bg); text-decoration: none; }
+    a:focus-visible { outline: 1px dashed var(--fg); outline-offset: 3px; }
+    @media (max-width: 420px) {
+      body { font-size: 15px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cursor { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>adiew</h1>
+    <p class="bio">unapologetic degen<span class="cursor" aria-hidden="true"></span></p>
+
+    <hr>
+
+    <p class="links">
+      <a href="https://x.com/adi3www" target="_blank" rel="noopener">x</a><span class="sep">|</span><a href="https://t.me/diewary" target="_blank" rel="noopener">telegram</a><span class="sep">|</span><a href="https://pump.fun/u/adi3www" target="_blank" rel="noopener">pump.fun</a><span class="sep">|</span><a href="https://trojan.com/@adi3www" target="_blank" rel="noopener">trojan</a><span class="sep">|</span><a href="https://github.com/adi3www" target="_blank" rel="noopener">github</a>
+    </p>
+
+  </main>
+</body>
+</html>
