@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>adiew / dca calc</title>
+<meta name="description" content="buy more. see how far your avg drops.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="adiew - dca calc">
+<meta property="og:description" content="buy more. see how far your avg drops.">
+<meta property="og:url" content="https://adi3www.github.io/dca-calc/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="adiew - dca calc">
+<meta name="twitter:description" content="buy more. see how far your avg drops.">
+<meta name="theme-color" content="#353535">
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #353535; --fg: #d8d8d8; --dim: #8c8c8c; --field: #2b2b2b;
+  --good: #9fd49f; --bad: #e8a0a0;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 16px/1.65 "Courier New", Courier, "Liberation Mono", monospace;
+  text-transform: lowercase;
+}
+main { max-width: 30rem; margin: 0 auto; padding: 2.5rem 1.25rem 3rem; }
+h1 { margin: 0; font-size: 2rem; font-weight: normal; letter-spacing: -0.02em; }
+.sub, .hint { color: var(--dim); }
+.sub { margin: 0.2rem 0 1.6rem; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-bottom: 0.9rem; }
+@media (max-width: 420px) { .grid { grid-template-columns: 1fr; } }
+label { display: block; color: var(--dim); font-size: 0.85rem; }
+input {
+  display: block; width: 100%; margin-top: 0.25rem; padding: 0.45rem 0.6rem;
+  font: inherit; color: var(--fg); background: var(--field);
+  border: 1px dashed var(--dim); border-radius: 0;
+}
+input:focus-visible { outline: 1px dashed var(--fg); outline-offset: 3px; }
+.hint { font-size: 0.8rem; margin: 0; }
+.top { margin: 0 0 1.8rem; color: var(--dim); }
+a { color: var(--fg); text-decoration: none; }
+a:hover { background: var(--fg); color: var(--bg); }
+a:focus-visible { outline: 1px dashed var(--fg); outline-offset: 3px; }
+hr { border: 0; border-top: 1px dashed var(--dim); opacity: 0.5; margin: 1.6rem 0; }
+.big { text-align: center; margin: 0 0 1.2rem; }
+.big small { display: block; color: var(--dim); font-size: 0.85rem; }
+.big strong { font-size: 1.5rem; font-weight: normal; letter-spacing: -0.02em; }
+.big em { display: block; font-style: normal; font-size: 1.1rem; margin-top: 0.15rem; }
+.good { color: var(--good); } .bad { color: var(--bad); } .err { color: var(--bad); }
+.row { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px dotted rgba(140,140,140,0.35); padding: 0.15rem 0; }
+.row span:first-child { color: var(--dim); }
+</style>
+</head>
+<body>
+<main>
+  <p class="top"><a href="https://adi3www.github.io/">home</a> / dca</p>
+  <h1>dca calc</h1>
+  <p class="sub">buy more. see how far your avg drops.</p>
+
+  <div class="grid">
+    <label>current avg buy (mc)<input id="avg" placeholder="0" inputmode="decimal"></label>
+    <label>current invested (usd)<input id="inv" placeholder="0" inputmode="decimal"></label>
+    <label>current mc<input id="now" placeholder="0" inputmode="decimal"></label>
+    <label>new buy (usd)<input id="amt" placeholder="0" inputmode="decimal"></label>
+  </div>
+  <p class="hint">market cap in usd. you can type k, m or b, like 200k or 1.5m.</p>
+
+  <hr>
+  <div id="out"></div>
+</main>
+
+<script>
+(function () {
+  var $ = function (i) { return document.getElementById(i); };
+  function num(i) {
+    var s = String($(i).value).replace(/[$,\s]/g, '').toLowerCase();
+    var m = s.match(/^([0-9]*\.?[0-9]+(?:e-?[0-9]+)?)([kmb])?$/);
+    if (!m) return NaN;
+    return parseFloat(m[1]) * ({ k: 1e3, m: 1e6, b: 1e9 }[m[2]] || 1);
+  }
+  function fp(n) {
+    var u = [[1e9, 'b'], [1e6, 'm'], [1e3, 'k']];
+    for (var i = 0; i < u.length; i++) {
+      if (n >= u[i][0]) return '$' + (n / u[i][0]).toFixed(2).replace(/\.?0+$/, '') + u[i][1];
+    }
+    return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 2 });
+  }
+  function fu(n) { return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 2 }); }
+  function pc(n) { return (n >= 0 ? '+' : '') + n.toFixed(2) + '%'; }
+  function row(l, v, c) { return '<div class="row"><span>' + l + '</span><span class="' + (c || '') + '">' + v + '</span></div>'; }
+
+  function calc() {
+    var avg = num('avg'), inv = num('inv'), now = num('now'), amt = num('amt');
+    var empty = ['avg', 'inv', 'now', 'amt'].some(function (i) { return !$(i).value.trim(); });
+    if (empty) {
+      $('out').innerHTML = '<p class="hint">fill in the four fields to see your new avg.</p>';
+      return;
+    }
+    if (!(avg > 0 && inv > 0 && now > 0 && amt >= 0)) {
+      $('out').innerHTML = '<p class="err">fill all four fields with numbers above 0.</p>';
+      return;
+    }
+    var units = inv / avg + amt / now;
+    var newAvg = (inv + amt) / units;
+    var chg = (newAvg / avg - 1) * 100;
+    var down = chg <= 0;
+    var h = '<p class="big"><small>' + 'your avg buy</small>' +
+            '<strong>' + fp(avg) + ' mc → ' + fp(newAvg) + ' mc</strong><em class="' + (down ? 'good' : 'bad') + '">(' + Math.abs(chg).toFixed(2) + '% ' + (down ? 'lower' : 'higher') + ')</em></p>';
+    h += row('total invested', fu(inv + amt));
+    h += row('current mc vs your old avg', pc((now / avg - 1) * 100), now <= avg ? 'bad' : 'good');
+    h += row('current mc vs your new avg', pc((now / newAvg - 1) * 100), now <= newAvg ? 'bad' : 'good');
+    $('out').innerHTML = h;
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('input'), function (el) {
+    el.addEventListener('input', calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
