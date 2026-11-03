@@ -1,168 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>adiew / break even calc</title>
-<meta name="description" content="down bad? see how much it needs to pump to get back to even.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>adiew / break even calc</title>
+  <meta name="description" content="down bad? see how much it needs to pump to get back to even.">
 
-<!-- link preview (open graph + x/twitter card) -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="adiew / break even calc">
-<meta property="og:description" content="down bad? see how much it needs to pump to get back to even.">
-<meta property="og:url" content="https://adi3www.github.io/break-even-calc/">
-<meta property="og:image" content="https://adi3www.github.io/social-break-even-calc.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="adiew / break even calc">
-<meta name="twitter:description" content="down bad? see how much it needs to pump to get back to even.">
-<meta name="twitter:image" content="https://adi3www.github.io/social-break-even-calc.png">
-  
-<meta name="theme-color" content="#353535">
-<style>
-:root {
-  color-scheme: dark;
-  --bg: #353535; --fg: #d8d8d8; --dim: #8c8c8c; --field: #2b2b2b;
-  --good: #9fd49f; --bad: #e8a0a0;
-  box-sizing: border-box;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-* { box-sizing: border-box; }
-[hidden] { display: none !important; }
-body {
-  margin: 0; background: var(--bg); color: var(--fg);
-  font: 16px/1.65 "Courier New", Courier, "Liberation Mono", monospace;
-  text-transform: lowercase;
-}
-main { max-width: 30rem; margin: 0 auto; padding: 2.5rem 1.25rem 3rem; }
-h1 { margin: 0; font-size: 2rem; font-weight: normal; letter-spacing: -0.02em; }
-.sub, .hint { color: var(--dim); }
-.sub { margin: 0.2rem 0 1.6rem; }
-.top { margin: 0 0 1.8rem; color: var(--dim); }
-a { color: var(--fg); text-decoration: none; }
-a:hover { background: var(--fg); color: var(--bg); }
-a:focus-visible, button:focus-visible, input:focus-visible { outline: 1px dashed var(--fg); outline-offset: 3px; }
-.tabs { display: flex; gap: 1rem; margin-bottom: 1.1rem; }
-button { font: inherit; color: var(--dim); background: none; border: 0; padding: 0; cursor: pointer; text-transform: lowercase; }
-button.on { color: var(--fg); }
-button:hover { background: var(--fg); color: var(--bg); }
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-bottom: 0.9rem; }
-@media (max-width: 420px) { .grid { grid-template-columns: 1fr; } }
-label { display: block; color: var(--dim); font-size: 0.85rem; }
-input {
-  display: block; width: 100%; margin-top: 0.25rem; padding: 0.45rem 0.6rem;
-  font: inherit; color: var(--fg); background: var(--field);
-  border: 1px dashed var(--dim); border-radius: 0;
-}
-.hint { font-size: 0.8rem; margin: 0; }
-hr { border: 0; border-top: 1px dashed var(--dim); opacity: 0.5; margin: 1.6rem 0; }
-.big { text-align: center; margin: 0 0 1.2rem; }
-.big small { display: block; color: var(--dim); font-size: 0.85rem; }
-.big strong { font-size: 2.2rem; font-weight: normal; letter-spacing: -0.02em; }
-.good { color: var(--good); } .bad { color: var(--bad); } .err { color: var(--bad); }
-.row { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px dotted rgba(140,140,140,0.35); padding: 0.15rem 0; }
-.row span:first-child { color: var(--dim); }
-</style>
+  <!-- link preview (open graph + x/twitter card) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="adiew / break even calc">
+  <meta property="og:description" content="down bad? see how much it needs to pump to get back to even.">
+  <meta property="og:url" content="https://adi3www.github.io/break-even-calc/">
+  <meta property="og:image" content="https://adi3www.github.io/social-break-even-calc.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="adiew / break even calc">
+  <meta name="twitter:description" content="down bad? see how much it needs to pump to get back to even.">
+  <meta name="twitter:image" content="https://adi3www.github.io/social-break-even-calc.png">
+
+  <meta name="theme-color" content="#353535">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #353535;
+      --fg: #d8d8d8;
+      --dim: #8c8c8c;
+      --field: #2b2b2b;
+      --good: #9fd49f;
+      --bad: #e8a0a0;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.65 "Courier New", Courier, "Liberation Mono", monospace;
+      text-transform: lowercase;
+    }
+    main {
+      max-width: 30rem;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3rem;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: normal;
+      letter-spacing: -0.02em;
+    }
+    .sub, .hint { color: var(--dim); }
+    .sub { margin: 0.2rem 0 1.6rem; }
+    .top { margin: 0 0 1.8rem; color: var(--dim); }
+    a { color: var(--fg); text-decoration: none; }
+    a:hover { background: var(--fg); color: var(--bg); }
+    a:focus-visible, button:focus-visible, input:focus-visible { outline: 1px dashed var(--fg); outline-offset: 3px; }
+    .tabs { display: flex; gap: 1rem; margin-bottom: 1.1rem; }
+    button {
+      font: inherit;
+      color: var(--dim);
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      text-transform: lowercase;
+    }
+    button.on { color: var(--fg); }
+    button:hover { background: var(--fg); color: var(--bg); }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+      margin-bottom: 0.9rem;
+    }
+    @media (max-width: 420px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    label { display: block; color: var(--dim); font-size: 0.85rem; }
+    input {
+      display: block;
+      width: 100%;
+      margin-top: 0.25rem;
+      padding: 0.45rem 0.6rem;
+      font: inherit;
+      color: var(--fg);
+      background: var(--field);
+      border: 1px dashed var(--dim);
+      border-radius: 0;
+    }
+    .hint { font-size: 0.8rem; margin: 0; }
+    hr {
+      border: 0;
+      border-top: 1px dashed var(--dim);
+      opacity: 0.5;
+      margin: 1.6rem 0;
+    }
+    .big { text-align: center; margin: 0 0 1.2rem; }
+    .big small { display: block; color: var(--dim); font-size: 0.85rem; }
+    .big strong { font-size: 2.2rem; font-weight: normal; letter-spacing: -0.02em; }
+    .good { color: var(--good); }
+    .bad { color: var(--bad); }
+    .err { color: var(--bad); }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 1px dotted rgba(140, 140, 140, 0.35);
+      padding: 0.15rem 0;
+    }
+    .row span:first-child { color: var(--dim); }
+  </style>
 </head>
 <body>
-<main>
-  <p class="top"><a href="https://adi3www.github.io/">home</a> / break even calc</p>
-  <h1>break even calc</h1>
-  <p class="sub">down bad? see how much it needs to pump to get back to even.</p>
+  <main>
+    <p class="top"><a href="https://adi3www.github.io/">home</a> / break even calc</p>
+    <h1>break even calc</h1>
+    <p class="sub">down bad? see how much it needs to pump to get back to even.</p>
 
-  <nav class="tabs">
-    <button class="on" data-mode="mc">[ by mc ]</button>
-    <button data-mode="loss">[ by loss % ]</button>
-  </nav>
+    <nav class="tabs">
+      <button class="on" data-mode="mc">[ by mc ]</button>
+      <button data-mode="loss">[ by loss % ]</button>
+    </nav>
 
-  <section id="p-mc" class="grid">
-    <label>avg buy (mc)<input id="avg" placeholder="0" inputmode="decimal"></label>
-    <label>current mc<input id="now" placeholder="0" inputmode="decimal"></label>
-  </section>
-  <section id="p-loss" hidden>
-    <label>current loss (%)<input id="loss" placeholder="0" inputmode="decimal"></label>
-  </section>
-  <p class="hint" id="hint">market cap in usd. you can type k, m or b, like 200k or 1.5m.</p>
+    <section id="p-mc" class="grid">
+      <label>avg buy (mc)<input id="avg" placeholder="0" inputmode="decimal"></label>
+      <label>current mc<input id="now" placeholder="0" inputmode="decimal"></label>
+    </section>
+    <section id="p-loss" hidden>
+      <label>current loss (%)<input id="loss" placeholder="0" inputmode="decimal"></label>
+    </section>
+    <p class="hint" id="hint">market cap in usd. you can type k, m or b, like 200k or 1.5m.</p>
 
-  <hr>
-  <div id="out"></div>
-</main>
+    <hr>
+    <div id="out"></div>
+  </main>
 
-<script>
-(function () {
-  var $ = function (i) { return document.getElementById(i); };
-  var mode = 'mc';
+  <script>
+    (function () {
+      var $ = function (i) { return document.getElementById(i); };
+      var mode = 'mc';
 
-  function num(i) {
-    var s = String($(i).value).replace(/[$,\s]/g, '').toLowerCase();
-    var m = s.match(/^([0-9]*\.?[0-9]+(?:e-?[0-9]+)?)([kmb])?$/);
-    if (!m) return NaN;
-    return parseFloat(m[1]) * ({ k: 1e3, m: 1e6, b: 1e9 }[m[2]] || 1);
-  }
-  function numPct(i) {
-    var v = parseFloat(String($(i).value).replace(/[%,\s]/g, ''));
-    return isFinite(v) ? v : NaN;
-  }
-  function fp(n) {
-    var u = [[1e9, 'b'], [1e6, 'm'], [1e3, 'k']];
-    for (var i = 0; i < u.length; i++) {
-      if (n >= u[i][0]) return '$' + (n / u[i][0]).toFixed(2).replace(/\.?0+$/, '') + u[i][1];
-    }
-    return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 2 });
-  }
-  function pct(n) { return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%'; }
-  function row(l, v, c) { return '<div class="row"><span>' + l + '</span><span class="' + (c || '') + '">' + v + '</span></div>'; }
-
-  function calc() {
-    var out = $('out'), loss, avg = null, now;
-    if (mode === 'mc') {
-      if (!$('avg').value.trim() || !$('now').value.trim()) {
-        out.innerHTML = '<p class="hint">fill in both fields to see what you need.</p>';
-        return;
+      function num(i) {
+        var s = String($(i).value).replace(/[$,\s]/g, '').toLowerCase();
+        var m = s.match(/^([0-9]*\.?[0-9]+(?:e-?[0-9]+)?)([kmb])?$/);
+        if (!m) return NaN;
+        return parseFloat(m[1]) * ({ k: 1e3, m: 1e6, b: 1e9 }[m[2]] || 1);
       }
-      avg = num('avg'); now = num('now');
-      if (!(avg > 0 && now > 0)) {
-        out.innerHTML = '<p class="err">both fields need numbers above 0.</p>';
-        return;
+      function numPct(i) {
+        var v = parseFloat(String($(i).value).replace(/[%,\s]/g, ''));
+        return isFinite(v) ? v : NaN;
       }
-      if (now >= avg) {
-        out.innerHTML = '<p class="big"><small>you are not down</small><strong class="good">+' + pct((now / avg - 1) * 100) + '</strong></p>' +
-          row('avg buy', fp(avg) + ' mc') + row('current mc', fp(now) + ' mc');
-        return;
+      function fp(n) {
+        var u = [[1e9, 'b'], [1e6, 'm'], [1e3, 'k']];
+        for (var i = 0; i < u.length; i++) {
+          if (n >= u[i][0]) return '$' + (n / u[i][0]).toFixed(2).replace(/\.?0+$/, '') + u[i][1];
+        }
+        return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 2 });
       }
-      loss = (1 - now / avg) * 100;
-    } else {
-      if (!$('loss').value.trim()) {
-        out.innerHTML = '<p class="hint">type your loss to see what you need.</p>';
-        return;
-      }
-      loss = Math.abs(numPct('loss'));
-      if (!(loss > 0 && loss < 100)) {
-        out.innerHTML = '<p class="err">loss must be above 0% and below 100%.</p>';
-        return;
-      }
-    }
-    var need = loss / (100 - loss) * 100;
-    var h = '<p class="big"><small>to get back to break even it needs</small><strong class="good">+' + pct(need) + '</strong></p>';
-    h += row('your loss', '-' + pct(loss), 'bad');
-    h += row('multiple needed', (100 / (100 - loss)).toLocaleString('en-US', { maximumFractionDigits: 2 }) + 'x');
-    if (avg) h += row('break-even mc', fp(avg) + ' mc');
-    out.innerHTML = h;
-  }
+      function pct(n) { return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%'; }
+      function row(l, v, c) { return '<div class="row"><span>' + l + '</span><span class="' + (c || '') + '">' + v + '</span></div>'; }
 
-  Array.prototype.forEach.call(document.querySelectorAll('input'), function (el) { el.addEventListener('input', calc); });
-  Array.prototype.forEach.call(document.querySelectorAll('.tabs button'), function (b) {
-    b.addEventListener('click', function () {
-      mode = b.getAttribute('data-mode');
-      Array.prototype.forEach.call(document.querySelectorAll('.tabs button'), function (x) { x.classList.toggle('on', x === b); });
-      $('p-mc').hidden = mode !== 'mc';
-      $('p-loss').hidden = mode !== 'loss';
-      $('hint').hidden = mode !== 'mc';
+      function calc() {
+        var out = $('out'), loss, avg = null, now;
+        if (mode === 'mc') {
+          if (!$('avg').value.trim() || !$('now').value.trim()) {
+            out.innerHTML = '<p class="hint">fill in both fields to see what you need.</p>';
+            return;
+          }
+          avg = num('avg');
+          now = num('now');
+          if (!(avg > 0 && now > 0)) {
+            out.innerHTML = '<p class="err">both fields need numbers above 0.</p>';
+            return;
+          }
+          if (now >= avg) {
+            out.innerHTML = '<p class="big"><small>you are not down</small><strong class="good">+' + pct((now / avg - 1) * 100) + '</strong></p>' +
+              row('avg buy', fp(avg) + ' mc') + row('current mc', fp(now) + ' mc');
+            return;
+          }
+          loss = (1 - now / avg) * 100;
+        } else {
+          if (!$('loss').value.trim()) {
+            out.innerHTML = '<p class="hint">type your loss to see what you need.</p>';
+            return;
+          }
+          loss = Math.abs(numPct('loss'));
+          if (!(loss > 0 && loss < 100)) {
+            out.innerHTML = '<p class="err">loss must be above 0% and below 100%.</p>';
+            return;
+          }
+        }
+        var need = loss / (100 - loss) * 100;
+        var h = '<p class="big"><small>to get back to break even it needs</small><strong class="good">+' + pct(need) + '</strong></p>';
+        h += row('your loss', '-' + pct(loss), 'bad');
+        h += row('multiple needed', (100 / (100 - loss)).toLocaleString('en-US', { maximumFractionDigits: 2 }) + 'x');
+        if (avg) h += row('break-even mc', fp(avg) + ' mc');
+        out.innerHTML = h;
+      }
+
+      Array.prototype.forEach.call(document.querySelectorAll('input'), function (el) {
+        el.addEventListener('input', calc);
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('.tabs button'), function (b) {
+        b.addEventListener('click', function () {
+          mode = b.getAttribute('data-mode');
+          Array.prototype.forEach.call(document.querySelectorAll('.tabs button'), function (x) {
+            x.classList.toggle('on', x === b);
+          });
+          $('p-mc').hidden = mode !== 'mc';
+          $('p-loss').hidden = mode !== 'loss';
+          $('hint').hidden = mode !== 'mc';
+          calc();
+        });
+      });
       calc();
-    });
-  });
-  calc();
-})();
-</script>
+    })();
+  </script>
 </body>
 </html>
