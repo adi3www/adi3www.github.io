@@ -1,0 +1,4 @@
+user-agent: *
+Allow: /
+
+Sitemap: https://adi3www.github.io/sitemap.xml
