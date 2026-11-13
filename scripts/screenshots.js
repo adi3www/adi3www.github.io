@@ -4,8 +4,6 @@ const path = require('path');
 
 const pages = [
   { file: 'index.html', out: 'social-preview.png' },
-  { file: 'dca-calc/index.html', out: 'social-dca-calc-preview.png' },
-  { file: 'break-even-calc/index.html', out: 'social-break-even-calc.png' },
 ];
 
 (async () => {
