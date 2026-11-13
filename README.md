@@ -1,8 +1,6 @@
 # adiew
 
-personal website and memecoin tools by adiew. unapologetic degen.
-
-live at [adi3www.github.io](https://adi3www.github.io/)
+personal website and memecoin tools by adiew, live at [adi3www.github.io](https://adi3www.github.io/).
 
 ## pages
 
