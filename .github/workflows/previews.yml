@@ -1,0 +1,33 @@
+name: update previews
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'social-*.png'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  previews:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: install playwright
+        run: |
+          npm init -y
+          npm install playwright@1.49.1
+          npx playwright install --with-deps chromium
+      - name: take screenshots
+        run: node scripts/screenshots.js
+      - name: commit previews
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add social-*.png
+          git diff --cached --quiet || (git commit -m "update link previews" && git push)
