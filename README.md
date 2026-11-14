@@ -17,7 +17,6 @@ a one-screen personal website. text only, dark gray, old web style.
 - [pump.fun](https://pump.fun/u/adi3www)
 - [terminal](https://trade.padre.gg/rk/adi3www)
 - [dawn](https://dawn.trade/@adi3www)
-- [github](https://github.com/adi3www)
 
 some links are referral links.
 
