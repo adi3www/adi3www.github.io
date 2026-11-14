@@ -1,10 +1,10 @@
 # adiew
 
-personal website of adiew.
+unapologetic degen.
 
-live at [adi3www.github.io](https://adi3www.github.io/)
+live at [adi3www.fun](https://adi3www.fun/)
 
-<a href="https://adi3www.github.io/">
+<a href="https://adi3www.fun/">
   <img src="social-preview.png" alt="adiew" width="100%">
 </a>
 
