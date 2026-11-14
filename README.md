@@ -1,8 +1,6 @@
 # adiew
 
-unapologetic degen.
-
-live at [adi3www.fun](https://adi3www.fun/)
+unapologetic degen, live at [adi3www.fun](https://adi3www.fun/).
 
 <a href="https://adi3www.fun/">
   <img src="social-preview.png" alt="adiew" width="100%">
