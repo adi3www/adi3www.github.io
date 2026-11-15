@@ -12,7 +12,9 @@ const pages = [
   for (const p of pages) {
     if (!fs.existsSync(p.file)) continue;
     await page.goto('file://' + path.resolve(p.file));
-    await page.addStyleTag({ content: '.cursor { animation: none !important; }' });
+    await page.addStyleTag({
+      content: '.bio .t::after { display: none !important; } .cursor { animation: none !important; left: 100% !important; }',
+    });
     await page.waitForTimeout(300);
     await page.screenshot({ path: p.out });
   }
