@@ -13,7 +13,6 @@ a one-screen personal website. text only, dark gray, old web style.
 ## links
 
 - [x](https://x.com/adi3www)
-- [telegram](https://t.me/diewary)
 - [pump.fun app](https://pump.fun/u/adi3www)
 - [terminal](https://trade.padre.gg/rk/adi3www)
 - [basedbot web app](https://basedbot.app/r/adi3www)
