@@ -1,14 +1,14 @@
-# Security Policy
+# security policy
 
-## Supported Versions
+## supported versions
 
-This is a static single-page site with no backend, no forms, and no user data.
-Only the latest version on the `main` branch is maintained.
+this is a static single-page site with no backend, no forms, and no user data.
+only the latest version on the `main` branch is maintained.
 
-## Reporting a Vulnerability
+## reporting a vulnerability
 
-Please do not open a public issue.
+please do not open a public issue.
 
-Report privately through the Security tab of this repository (Report a vulnerability).
+report privately through the security and quality tab of this repository (report a vulnerability).
 
-I will reply as soon as I can. If the report is valid, I will fix it and update the site.
+i will reply as soon as i can. if the report is valid, i will fix it and update the site.
