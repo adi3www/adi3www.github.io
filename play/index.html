@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>doge//blastar</title>
+<meta name="description" content="a tiny homage to blastar, the 1984 shooter elon musk wrote at age 12. doge edition. no wallet, no rewards.">
+<meta name="theme-color" content="#353535">
+<meta property="og:title" content="doge//blastar">
+<meta property="og:description" content="a tiny homage to blastar (1984). doge edition. no wallet, no rewards.">
+<meta property="og:image" content="https://doge.adi3www.fun/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+:root{color-scheme:dark;--base:#353535;--bg:#1f1f1f;--ink:#e7e7e3;--muted:#969894;--line:rgba(231,231,227,.17);--blue:#397cff;--soft:#9bbcff;--mono:"Courier New",Courier,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--base);color:var(--ink);font:14px/1.6 var(--mono);text-transform:lowercase;overscroll-behavior:none;touch-action:none;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+#g{position:fixed;inset:0;width:100%;height:100%;display:block}
+.bar{position:fixed;z-index:2;top:0;left:0;right:0;display:flex;justify-content:space-between;gap:16px;padding:calc(12px + env(safe-area-inset-top)) 16px 10px;font-size:12px;color:var(--muted);pointer-events:none}
+.bar a,.bar button{pointer-events:auto}
+.bar b{color:var(--ink);font-weight:400}
+.bar a:hover,.bar button:hover{color:var(--soft)}
+.bar button{background:none;border:0;color:inherit;font:inherit;text-transform:inherit;cursor:pointer;padding:0}
+.ov{position:fixed;z-index:5;inset:0;display:grid;place-items:center;padding:20px;background:rgba(31,31,31,.88);overflow:auto}
+.hidden{display:none!important}
+.box{width:min(520px,100%);padding:26px;border:1px solid var(--line);background:#2c2c2c}
+.eyebrow{color:var(--soft);font-size:11px;letter-spacing:.16em}
+h1{margin:14px 0 10px;font:500 clamp(28px,7vw,40px)/1.05 var(--mono);letter-spacing:-.04em}
+.cursor{color:var(--soft);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+p{margin:0 0 12px;color:#b7b8b4;font-size:13px}
+.keys{color:var(--muted);font-size:12px}
+.row{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:18px}
+.btn{border:1px solid var(--blue);background:var(--blue);color:#fff;padding:12px 17px;font:12px var(--mono);text-transform:lowercase;cursor:pointer;transition:.2s}
+.btn:hover{background:transparent;color:var(--soft)}
+.quiet{color:#c2c4c0;font-size:12px;border-bottom:1px solid #747772;padding-bottom:2px;background:none;border-top:0;border-left:0;border-right:0;font-family:var(--mono);text-transform:lowercase;cursor:pointer}
+.fine{margin:18px 0 0;font-size:10px;color:var(--muted)}
+#toast{position:fixed;z-index:4;top:52px;left:50%;transform:translateX(-50%);color:var(--soft);font-size:12px;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap}
+:focus-visible{outline:1px solid var(--soft);outline-offset:4px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="g" aria-label="doge blastar game"></canvas>
+<div class="bar"><a href="../">← doge.adi3www.fun</a><span>score <b id="sc">0000</b> · best <b id="bs">0000</b> · wave <b id="wv">1</b> · lives <b id="lv">3</b></span><button id="pb" type="button">pause</button></div>
+<div id="toast"></div>
+<div class="ov" id="menu"><div class="box">
+<div class="eyebrow">adiew / experiments / 002</div>
+<h1 id="t">doge//blastar<span class="cursor">_</span></h1>
+<p id="msg">a tiny homage to blastar, the 1984 shooter elon musk wrote at age 12. original code and art, nothing copied. shoot the freighters, dodge their beams, grab $ for a 5 second shield.</p>
+<p class="keys">desktop: ← → or a d to move. auto-fire. p to pause.<br>mobile: drag anywhere to move. auto-fire.</p>
+<div class="row"><button class="btn" id="go" type="button">start ↗</button><a class="quiet" id="back" href="../">back</a><button class="quiet hidden" id="share" type="button">share score</button></div>
+<p class="fine">independent community project. not affiliated with or endorsed by elon musk, dogecoin or its creators. no wallet, no rewards, no financial utility. best score is saved in your browser only.</p>
+</div></div>
+<script>
+(()=>{'use strict';
+const c=document.getElementById('g'),x=c.getContext('2d',{alpha:false}),$=id=>document.getElementById(id);
+const ls={get(k){try{return +localStorage.getItem(k)||0}catch(e){return 0}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const img=new Image();img.src='../doge.png';
+let W,H,u,last=0,raf=0,state='menu',keys={},score=0,best=ls.get('blastar-best'),lives=3,wave=1,inv=0,shield=0,fireT=0,waveT=-1,tt=0;
+let ship={x:0,y:0,tx:0},bul=[],en=[],bm=[],pk=[],pt=[],st=[];
+function rs(){const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0);u=Math.max(.75,Math.min(W/420,H/720));ship.y=H-90*u;ship.x=ship.tx=Math.min(Math.max(ship.x||W/2,24*u),W-24*u);st=[];for(let i=0;i<70;i++)st.push({x:Math.random()*W,y:Math.random()*H,s:.3+Math.random()*.9})}
+addEventListener('resize',rs);rs();
+const pad=n=>String(n).padStart(4,'0');
+function hud(){$('sc').textContent=pad(score);$('bs').textContent=pad(best);$('wv').textContent=wave;$('lv').textContent=lives}
+function toast(t){const e=$('toast');e.textContent=t;e.style.opacity=1;clearTimeout(toast.h);toast.h=setTimeout(()=>e.style.opacity=0,1100)}
+function beep(f,d,t){try{const a=beep.a=beep.a||new(window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.type=t||'square';o.frequency.value=f;g.gain.setValueAtTime(.03,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+d);o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+d)}catch(e){}}
+function burst(px,py,col){for(let i=0;i<10;i++)pt.push({x:px,y:py,vx:(Math.random()-.5)*220*u,vy:(Math.random()-.5)*220*u,l:.5,col})}
+function spawn(){const n=Math.min(4+wave,10);for(let i=0;i<n;i++){const bx=W*(.15+.7*(i+.5)/n);en.push({bx,x:bx,y:-30*u-(i%3)*46*u,t:Math.random()*6,f:1.1+Math.random()*.8,amp:(22+Math.random()*26)*u,vy:(20+wave*2.5)*u,hp:1+Math.floor(wave/3),fr:.12+wave*.03})}}
+function reset(){score=0;lives=3;wave=1;inv=0;shield=0;fireT=0;waveT=-1;bul=[];en=[];bm=[];pk=[];pt=[];ship.x=ship.tx=W/2;spawn();state='run';$('menu').classList.add('hidden');$('pb').textContent='pause';hud();last=performance.now();cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)}
+function hurt(){if(inv>0||shield>0)return;lives--;inv=1.6;burst(ship.x,ship.y,'#ff7168');beep(120,.25,'sawtooth');hud();if(lives<=0)finish()}
+function menu(title,msg,btn,over){state=over?'over':'pause';$('t').innerHTML=title+'<span class="cursor">_</span>';$('msg').textContent=msg;$('go').textContent=btn;$('share').classList.toggle('hidden',!over);$('back').classList.toggle('hidden',false);$('menu').classList.remove('hidden')}
+function finish(){state='over';cancelAnimationFrame(raf);if(score>best){best=score;ls.set('blastar-best',best)}hud();menu('game over','score '+score+' · wave '+wave+' · best '+best+'. the freighters live to fly another day.','run it back ↗',true)}
+function pause(){if(state==='run'){state='pause';cancelAnimationFrame(raf);$('pb').textContent='resume';menu('paused','take a breather. ready when you are.','resume ↗',false)}else if(state==='pause')resume()}
+function resume(){state='run';$('menu').classList.add('hidden');$('pb').textContent='pause';last=performance.now();raf=requestAnimationFrame(loop)}
+function update(dt){
+ tt+=dt;const dir=(keys.ArrowRight||keys.d?1:0)-(keys.ArrowLeft||keys.a?1:0);
+ if(dir)ship.tx=Math.min(Math.max(ship.tx+dir*480*u*dt,24*u),W-24*u);
+ ship.x+=(ship.tx-ship.x)*Math.min(1,dt*14);inv=Math.max(0,inv-dt);shield=Math.max(0,shield-dt);
+ fireT-=dt;if(fireT<=0){fireT=.2;bul.push({x:ship.x,y:ship.y-22*u});beep(880,.03)}
+ for(const s of st){s.y+=s.s*60*u*dt*(1+wave*.05);if(s.y>H){s.y=0;s.x=Math.random()*W}}
+ for(let i=bul.length-1;i>=0;i--){const b=bul[i];b.y-=580*u*dt;if(b.y<-12)bul.splice(i,1)}
+ for(let i=en.length-1;i>=0;i--){const e=en[i];e.t+=dt;e.x=e.bx+Math.sin(e.t*e.f)*e.amp;e.y+=e.vy*dt;
+  if(e.y>0&&Math.random()<e.fr*dt)bm.push({x:e.x,y:e.y+12*u});
+  if(e.y>H+20*u){en.splice(i,1);hurt();continue}
+  for(let j=bul.length-1;j>=0;j--){const b=bul[j];if(Math.abs(b.x-e.x)<20*u&&Math.abs(b.y-e.y)<14*u){bul.splice(j,1);e.hp--;burst(b.x,b.y,'#9bbcff');if(e.hp<=0){en.splice(i,1);score+=100;burst(e.x,e.y,'#e0605c');beep(200,.1,'sawtooth');if(Math.random()<.14)pk.push({x:e.x,y:e.y});hud()}break}}}
+ for(let i=bm.length-1;i>=0;i--){const b=bm[i];b.y+=270*u*dt;if(Math.abs(b.x-ship.x)<13*u&&Math.abs(b.y-ship.y)<18*u){bm.splice(i,1);hurt();continue}if(b.y>H+20)bm.splice(i,1)}
+ for(let i=pk.length-1;i>=0;i--){const p=pk[i];p.y+=110*u*dt;if(Math.hypot(p.x-ship.x,p.y-ship.y)<28*u){pk.splice(i,1);shield=5;score+=50;toast('usdc shield · 5s');beep(740,.1,'sine');hud()}else if(p.y>H+20)pk.splice(i,1)}
+ for(let i=pt.length-1;i>=0;i--){const p=pt[i];p.x+=p.vx*dt;p.y+=p.vy*dt;p.l-=dt;if(p.l<=0)pt.splice(i,1)}
+ if(!en.length){if(waveT<0)waveT=1;waveT-=dt;if(waveT<=0){waveT=-1;wave++;spawn();toast('wave '+wave);hud()}}
+ if(state==='run')hud()}
+function render(){
+ x.fillStyle='#1f1f1f';x.fillRect(0,0,W,H);x.fillStyle='#e7e7e3';
+ for(const s of st){x.globalAlpha=.25+s.s*.5;x.fillRect(s.x,s.y,s.s*2*u,s.s*2*u)}x.globalAlpha=1;
+ for(const p of pk){x.fillStyle='#397cff';x.beginPath();x.arc(p.x,p.y,11*u,0,7);x.fill();x.fillStyle='#fff';x.font='700 '+13*u+'px Courier New,monospace';x.textAlign='center';x.textBaseline='middle';x.fillText('$',p.x,p.y+1)}
+ for(const e of en){x.fillStyle=e.hp>1?'#f08a86':'#e0605c';x.fillRect(e.x-17*u,e.y-6*u,34*u,12*u);x.fillRect(e.x-8*u,e.y-12*u,16*u,6*u);x.fillStyle='#1f1f1f';x.fillRect(e.x-10*u,e.y-2*u,5*u,4*u);x.fillRect(e.x+5*u,e.y-2*u,5*u,4*u)}
+ x.fillStyle='#ff9a5c';for(const b of bm)x.fillRect(b.x-1.5*u,b.y,3*u,14*u);
+ x.fillStyle='#9bbcff';for(const b of bul)x.fillRect(b.x-1.5*u,b.y-8*u,3*u,12*u);
+ if(inv<=0||Math.floor(tt*12)%2){const s=44*u;if(img.complete&&img.naturalWidth)x.drawImage(img,ship.x-s/2,ship.y-s/2,s,s);else{x.fillStyle='#d89a50';x.beginPath();x.arc(ship.x,ship.y,s/2,0,7);x.fill()}}
+ if(shield>0){x.strokeStyle='#9bbcff';x.globalAlpha=shield<1.5&&Math.floor(tt*10)%2?.3:.9;x.lineWidth=2;x.beginPath();x.arc(ship.x,ship.y,30*u,0,7);x.stroke();x.globalAlpha=1}
+ for(const p of pt){x.globalAlpha=Math.max(0,p.l*2);x.fillStyle=p.col;x.fillRect(p.x,p.y,3*u,3*u)}x.globalAlpha=1}
+function loop(now){if(state!=='run')return;const dt=Math.min(.04,(now-last)/1000||0);last=now;update(dt);if(state==='run'){render();raf=requestAnimationFrame(loop)}else render()}
+$('go').onclick=()=>state==='pause'?resume():reset();
+$('pb').onclick=pause;
+$('share').onclick=()=>{const t='i scored '+score+' (wave '+wave+') on doge//blastar. beat it: https://doge.adi3www.fun/play/';if(navigator.share)navigator.share({title:'doge//blastar',text:t}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(t).then(()=>toast('score copied'),()=>toast('copy unavailable'))};
+addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight',' '].includes(e.key))e.preventDefault();keys[e.key]=true;if(e.key==='p'||e.key==='Escape')pause()});
+addEventListener('keyup',e=>keys[e.key]=false);
+addEventListener('blur',()=>{keys={};if(state==='run')pause()});
+c.addEventListener('pointerdown',e=>{if(state==='run')ship.tx=e.clientX});
+c.addEventListener('pointermove',e=>{if(state==='run'&&(e.buttons||e.pointerType==='touch'))ship.tx=e.clientX});
+hud();x.fillStyle='#1f1f1f';x.fillRect(0,0,W,H);
+})();
+</script>
+</body>
+</html>
