@@ -1,86 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>$doge / dogestablecoin</title>
-<meta name="description" content="a dogecoin derivative on solana, paired with usdc. an independent community experiment by adiew. includes doge//blastar, a tiny arcade homage.">
-<meta name="theme-color" content="#353535">
-<meta property="og:type" content="website">
-<meta property="og:title" content="$doge — dogestablecoin">
-<meta property="og:description" content="a dogecoin derivative on solana, paired with usdc. plus doge//blastar, a tiny arcade homage.">
-<meta property="og:url" content="https://doge.adi3www.fun/">
-<meta property="og:image" content="https://doge.adi3www.fun/social-preview.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="$doge — dogestablecoin">
-<meta name="twitter:description" content="a dogecoin derivative on solana, paired with usdc. plus doge//blastar, a tiny arcade homage.">
-<meta name="twitter:image" content="https://doge.adi3www.fun/social-preview.png">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<style>
-:root{color-scheme:dark;--base:#353535;--panel:#2c2c2c;--ink:#e7e7e3;--muted:#969894;--line:rgba(231,231,227,.17);--blue:#397cff;--soft:#9bbcff;--mono:"Courier New",Courier,monospace}
-*{box-sizing:border-box}
-body{margin:0;background:var(--base);color:var(--ink);font:15px/1.7 var(--mono);text-transform:lowercase;-webkit-font-smoothing:antialiased}
-a{color:inherit}a:hover{color:var(--soft)}
-a:focus-visible,button:focus-visible{outline:1px solid var(--soft);outline-offset:4px}
-.wrap{width:min(680px,calc(100% - 40px));margin:0 auto;padding:calc(40px + env(safe-area-inset-top)) 0 calc(40px + env(safe-area-inset-bottom))}
-.top{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:12px}
-img.doge{display:block;width:72px;height:72px;margin:44px 0 18px;border-radius:50%}
-h1{margin:0 0 14px;font:500 clamp(24px,6.5vw,38px)/1.1 var(--mono);letter-spacing:-.04em}
-.typed{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:bottom;width:0;animation:type 1.2s steps(22) .2s forwards}
-@keyframes type{to{width:22ch}}
-.cursor{color:var(--soft);animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-p{margin:0 0 14px;color:#b7b8b4;font-size:14px}
-h2{margin:40px 0 12px;color:var(--soft);font:400 12px var(--mono);letter-spacing:.14em}
-.ca{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:14px 16px;border:1px solid var(--line);background:var(--panel)}
-.ca code{font:12px/1.5 var(--mono);overflow-wrap:anywhere;color:#d7d9d5}
-.ca button{flex:none;border:1px solid #5b82c9;background:none;color:var(--soft);padding:8px 12px;font:11px var(--mono);text-transform:lowercase;cursor:pointer}
-.ca button:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
-ul{margin:0;padding:0;list-style:none}
-li{padding:2px 0;font-size:14px}li:before{content:"> ";color:var(--muted)}
-.btn{display:inline-block;margin-top:6px;padding:12px 17px;border:1px solid var(--blue);background:var(--blue);color:#fff;font-size:12px;text-decoration:none;transition:.2s}
-.btn:hover{background:transparent;color:var(--soft)}
-.note{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
-.note p{color:var(--muted);font-size:11px;margin:0 0 8px}
-@media(prefers-reduced-motion:reduce){.typed{animation:none;width:auto}.cursor{animation:none}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>adiew</title>
+  <meta name="description" content="unapologetic degen">
+
+  <!-- link preview (open graph + x/twitter card) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="adiew">
+  <meta property="og:description" content="unapologetic degen">
+  <meta property="og:url" content="https://adi3www.fun/">
+  <meta property="og:image" content="https://adi3www.fun/social-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="adiew">
+  <meta name="twitter:description" content="unapologetic degen">
+  <meta name="twitter:image" content="https://adi3www.fun/social-preview.png">
+
+  <meta name="theme-color" content="#353535">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <style>
+    :root {
+      --bg: #353535;
+      --fg: #d8d8d8;
+      --dim: #8c8c8c;
+      --link: #e9e9e9;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Courier New", Courier, "Liberation Mono", monospace;
+      font-size: 17px;
+      line-height: 1.7;
+      text-transform: lowercase;
+      text-align: center;
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    main {
+      width: 100%;
+      max-width: 34rem;
+      padding: 2rem 1.5rem 24vh;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      font-weight: normal;
+      letter-spacing: -0.02em;
+    }
+    .bio { margin: 0.25rem 0 0; color: var(--dim); }
+    .bio .t { position: relative; display: inline-block; }
+    .bio .t::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      background: var(--bg);
+      animation: reveal 1.8s steps(18) 0.5s forwards;
+    }
+    .cursor {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      z-index: 1;
+      width: 0.6em;
+      height: 1.05em;
+      margin: -0.525em 0 0 0.15em;
+      background: var(--fg);
+      animation: type 1.8s steps(18) 0.5s forwards, blink 1.1s steps(1) infinite;
+    }
+    @keyframes reveal { to { width: 0; } }
+    @keyframes type { to { left: 100%; } }
+    @keyframes blink { 50% { opacity: 0; } }
+    hr {
+      border: 0;
+      border-top: 1px dashed var(--dim);
+      margin: 2.5rem 0;
+      opacity: 0.5;
+    }
+    .links { margin: 0; }
+    .links .sep { color: var(--dim); margin: 0 0.5em; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { background: var(--fg); color: var(--bg); text-decoration: none; }
+    a:focus-visible { outline: 1px dashed var(--fg); outline-offset: 3px; }
+    .dd { position: relative; display: inline-block; }
+    .dd-btn {
+      font: inherit;
+      color: var(--link);
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      text-transform: lowercase;
+    }
+    .dd-btn:hover, .dd-btn[aria-expanded="true"] { background: var(--fg); color: var(--bg); }
+    .dd-btn:focus-visible { outline: 1px dashed var(--fg); outline-offset: 3px; }
+    .dd-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      background: var(--bg);
+      border: 1px dashed var(--dim);
+      z-index: 10;
+    }
+    .dd-menu.open { display: block; }
+    .dd-menu a { display: block; white-space: nowrap; }
+    footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px));
+      font-size: 0.8rem;
+      color: var(--dim);
+      text-align: center;
+    }
+    @media (max-width: 420px) {
+      body { font-size: 15px; }
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
-<div class="top"><a href="https://adi3www.fun/">← adiew</a><span>solana · experiment 001</span></div>
-<img class="doge" src="doge.png" alt="doge" width="72" height="72">
-<h1><span class="typed">$doge / dogestablecoin</span><span class="cursor">_</span></h1>
-<p>a dogecoin derivative using the $doge ticker, paired with usdc on solana. an independent community experiment by <a href="https://adi3www.fun/">adiew</a>. unapologetic degen, much internet.</p>
+  <main>
+    <h1>adiew</h1>
+    <p class="bio"><span class="t">unapologetic degen<span class="cursor" aria-hidden="true"></span></span></p>
 
-<h2>01 / contract</h2>
-<div class="ca"><code id="ca-text">2UDt6ivnWtyqf37cMKDfQ4Myd242Ebw3fsj8VahQpump</code><button id="copy-ca" type="button">copy</button></div>
-<p style="margin-top:12px;font-size:12px;color:var(--muted)">always verify the address before you interact with anything.</p>
-<ul>
-<li><a href="https://pump.fun/coin/2UDt6ivnWtyqf37cMKDfQ4Myd242Ebw3fsj8VahQpump" target="_blank" rel="noopener">pump.fun ↗</a></li>
-<li><a href="https://dexscreener.com/solana/2UDt6ivnWtyqf37cMKDfQ4Myd242Ebw3fsj8VahQpump" target="_blank" rel="noopener">dexscreener ↗</a></li>
-<li><a href="https://solscan.io/token/2UDt6ivnWtyqf37cMKDfQ4Myd242Ebw3fsj8VahQpump" target="_blank" rel="noopener">solscan ↗</a></li>
-<li><a href="https://x.com/adi3www/status/2122137771209015444" target="_blank" rel="noopener">origin post ↗</a></li>
-</ul>
+    <hr>
 
-<h2>02 / how it started</h2>
-<p><a href="https://x.com/Stitchrzz/status/2121829349351395479" target="_blank" rel="noopener">@stitchrzz</a> floated the idea of rerunning dogecoin paired with a stablecoin. <a href="https://x.com/BillyM2k/status/2121831291545133515" target="_blank" rel="noopener">@billym2k</a> replied that y’all can do whatever you want, and welcomed creator-reward support. so it launched on solana, and the project states that 100% of creator rewards go to shibetoshi nakamoto.</p>
+    <p class="links">
+      <a href="https://x.com/adi3www" target="_blank" rel="noopener">x</a><span class="sep">|</span><a href="https://open.spotify.com/user/31kq6tck5pgbsc7tm3xl42gslgkq" target="_blank" rel="noopener">spotify</a><span class="sep">|</span><span class="dd"><button type="button" class="dd-btn" aria-expanded="false" aria-controls="pump-menu">pump.fun</button><span class="dd-menu" id="pump-menu"><a href="https://pump.fun/u/adi3www" target="_blank" rel="noopener">pump.fun app</a><a href="https://trade.padre.gg/rk/adi3www" target="_blank" rel="noopener">terminal</a></span></span><span class="sep">|</span><span class="dd"><button type="button" class="dd-btn" aria-expanded="false" aria-controls="basedbot-menu">basedbot</button><span class="dd-menu" id="basedbot-menu"><a href="https://basedbot.app/r/adi3www" target="_blank" rel="noopener">web app</a><a href="https://t.me/based_eth_bot?start=r_adi3www" target="_blank" rel="noopener">telegram bot</a></span></span>
+    </p>
+  </main>
 
-<h2>03 / arcade</h2>
-<p>in 1984 a twelve-year-old elon musk wrote a shooter called blastar. this is a small, original homage in the doge universe: shoot the freighters, dodge the beams, grab $ for a shield. no wallet, no rewards, just a high score.</p>
-<a class="btn" href="play/">play doge//blastar ↗</a>
+  <footer>© 2026 adiew · built on <a href="https://github.com/adi3www/adi3www.github.io" target="_blank" rel="noopener">github pages</a></footer>
 
-<div class="note">
-<p>independent community token. not affiliated with or endorsed by dogecoin, the dogecoin foundation, billy markus or elon musk. not financial advice. memecoins can go to zero.</p>
-<p>© 2026 adiew · plain html and css · no trackers, no cookies · <a href="https://github.com/adi3www/doge">source ↗</a></p>
-</div>
-</div>
-<script>
-(function(){var b=document.getElementById('copy-ca'),a=document.getElementById('ca-text').textContent.trim(),o=b.textContent;
-b.addEventListener('click',function(){function ok(){b.textContent='copied ✓';setTimeout(function(){b.textContent=o},1600)}
-if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(a).then(ok,function(){b.textContent='copy unavailable'})}
-else{var f=document.createElement('textarea');f.value=a;f.style.cssText='position:fixed;opacity:0';document.body.appendChild(f);f.select();try{document.execCommand('copy');ok()}catch(e){b.textContent='copy unavailable'}document.body.removeChild(f)}})})();
-</script>
+  <script>
+    (function () {
+      var dds = Array.prototype.slice.call(document.querySelectorAll('.dd'));
+
+      function setOpen(dd, open) {
+        dd.querySelector('.dd-menu').classList.toggle('open', open);
+        dd.querySelector('.dd-btn').setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      function closeAll(except) {
+        dds.forEach(function (dd) { if (dd !== except) setOpen(dd, false); });
+      }
+
+      dds.forEach(function (dd) {
+        dd.querySelector('.dd-btn').addEventListener('click', function (e) {
+          e.stopPropagation();
+          var willOpen = !dd.querySelector('.dd-menu').classList.contains('open');
+          closeAll(dd);
+          setOpen(dd, willOpen);
+        });
+      });
+      document.addEventListener('click', function () { closeAll(null); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll(null);
+      });
+    })();
+  </script>
 </body>
 </html>

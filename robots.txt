@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://doge.adi3www.fun/sitemap.xml
+Sitemap: https://adi3www.fun/sitemap.xml

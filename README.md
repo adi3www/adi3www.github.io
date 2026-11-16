@@ -1,27 +1,29 @@
-# doge.adi3www.fun
+# adiew
 
-a dogecoin derivative on solana, paired with usdc. an independent community experiment by [adiew](https://adi3www.fun/). live at [doge.adi3www.fun](https://doge.adi3www.fun/).
+unapologetic degen, live at [adi3www.fun](https://adi3www.fun/).
+
+<a href="https://adi3www.fun/">
+  <img src="social-preview.png" alt="adiew" width="100%">
+</a>
 
 ## what is this
 
-a one-screen project page for the `$doge` token, plus a small arcade game. dark gray, lowercase, old web style, same as the main site.
+a one-screen personal website. text only, dark gray, old web style.
 
-## play
+## links
 
-[doge//blastar](https://doge.adi3www.fun/play/) is an original homage to blastar, the 1984 shooter elon musk wrote at age 12. no assets or code from the original.
+- [x](https://x.com/adi3www)
+- [spotify](https://open.spotify.com/user/31kq6tck5pgbsc7tm3xl42gslgkq)
+- [pump.fun app](https://pump.fun/u/adi3www)
+- [terminal](https://trade.padre.gg/rk/adi3www)
+- [basedbot web app](https://basedbot.app/r/adi3www)
+- [basedbot telegram bot](https://t.me/based_eth_bot?start=r_adi3www)
 
-- desktop: left/right arrows or a/d to move, auto-fire, p to pause
-- mobile: drag anywhere to move, auto-fire
-- grab `$` for a 5 second shield
-- no wallet connection, no rewards, no financial utility
+some links are referral links.
 
 ## built with
 
-plain html, css and javascript. no frameworks, no build step, no cookies, no trackers. the best score is kept in your browser's localstorage and never leaves it. hosted on github pages. the link preview image is generated automatically from the page.
-
-## notes
-
-independent community project. not affiliated with or endorsed by dogecoin, the dogecoin foundation, billy markus or elon musk. not financial advice. memecoins can go to zero.
+plain html and css. no frameworks, no build step, no cookies, no trackers. hosted on github pages. the link preview image is generated automatically from the page.
 
 ## security
 
