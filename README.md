@@ -18,7 +18,6 @@ a one-screen personal website. text only, dark gray, old web style.
 - [terminal](https://trade.padre.gg/rk/adi3www)
 - [basedbot web app](https://basedbot.app/r/adi3www)
 - [basedbot telegram bot](https://t.me/based_eth_bot?start=r_adi3www)
-- [$doge](https://doge.adi3www.fun)
 
 some links are referral links.
 
