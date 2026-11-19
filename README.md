@@ -23,7 +23,7 @@ some links are referral links.
 
 ## built with
 
-plain html and css. no frameworks, no build step, no cookies, no trackers. hosted on github pages. the link preview image is generated automatically from the page.
+plain html, css, and a tiny bit of js. no frameworks, no build step for the site itself, no cookies, no trackers. hosted on github pages. the link preview image is generated automatically from the page by a github action.
 
 ## security
 
