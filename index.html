@@ -148,7 +148,7 @@
     @media (max-width: 340px) {
       .links { font-size: 13px; }
     }
-    /* layar pendek (hp landscape): footer ikut alur halaman, tidak menimpa konten */
+    /* short screens (phone landscape): footer flows with the page instead of overlapping the content */
     @media (max-height: 400px) {
       body { flex-direction: column; justify-content: center; }
       main { padding-bottom: 1rem; }
@@ -159,7 +159,7 @@
       .cursor { animation: none; left: 100%; }
     }
   </style>
-  <!-- tanpa js: sembunyikan tombol dropdown, link ditampilkan langsung lewat blok noscript di bawah -->
+  <!-- no js: hide the dropdown buttons, the links are shown directly via the noscript block below -->
   <noscript><style>.dd { display: none; }</style></noscript>
 </head>
 <body>
