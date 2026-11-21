@@ -14,11 +14,10 @@ a one-screen personal website. text only, dark gray, old web style.
 
 - [x](https://x.com/adi3www)
 - [telegram](https://t.me/adi3wwwfun)
-- [spotify](https://open.spotify.com/user/31kq6tck5pgbsc7tm3xl42gslgkq)
-- trading tools
-  - [pump.fun](https://pump.fun/u/adi3www)
+- pump.fun
+  - [pump.fun app](https://pump.fun/u/adi3www)
   - [terminal](https://trade.padre.gg/rk/adi3www)
-  - [basedbot](https://t.me/based_eth_bot?start=r_adi3www)
+- [basedbot](https://t.me/based_eth_bot?start=r_adi3www)
 
 some links are referral links.
 
