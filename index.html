@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  
+
   <!-- csp -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>adiew</title>
   <meta name="description" content="unapologetic degen">
@@ -127,7 +127,6 @@
       z-index: 10;
     }
     .dd-menu.open { display: block; }
-    .dd-end .dd-menu { left: auto; right: 0; transform: none; }
     .dd-menu a { display: block; white-space: nowrap; }
     footer {
       position: fixed;
@@ -148,6 +147,7 @@
     @media (max-width: 340px) {
       .links { font-size: 13px; }
     }
+
     /* short screens (phone landscape): footer flows with the page instead of overlapping the content */
     @media (max-height: 400px) {
       body { flex-direction: column; justify-content: center; }
@@ -159,7 +159,8 @@
       .cursor { animation: none; left: 100%; }
     }
   </style>
-  <!-- no js: hide the dropdown buttons, the links are shown directly via the noscript block below -->
+
+  <!-- no js: hide the dropdown button, the links are shown directly via the noscript block below -->
   <noscript><style>.dd { display: none; }</style></noscript>
 </head>
 <body>
@@ -170,7 +171,7 @@
     <hr>
 
     <p class="links">
-      <a href="https://x.com/adi3www" target="_blank" rel="noopener">x</a><span class="sep">|</span><a href="https://t.me/adi3wwwfun" target="_blank" rel="noopener">telegram</a><span class="sep">|</span><a href="https://open.spotify.com/user/31kq6tck5pgbsc7tm3xl42gslgkq" target="_blank" rel="noopener">spotify</a><span class="sep">|</span><span class="dd dd-end"><button type="button" class="dd-btn" aria-expanded="false" aria-controls="tools-menu">trading tools</button><span class="dd-menu" id="tools-menu"><a href="https://pump.fun/u/adi3www" target="_blank" rel="noopener">pump.fun</a><a href="https://trade.padre.gg/rk/adi3www" target="_blank" rel="noopener">terminal</a><a href="https://t.me/based_eth_bot?start=r_adi3www" target="_blank" rel="noopener">basedbot</a></span></span><noscript><span class="sep">|</span><a href="https://pump.fun/u/adi3www" target="_blank" rel="noopener">pump.fun</a><span class="sep">|</span><a href="https://trade.padre.gg/rk/adi3www" target="_blank" rel="noopener">terminal</a><span class="sep">|</span><a href="https://t.me/based_eth_bot?start=r_adi3www" target="_blank" rel="noopener">basedbot</a></noscript>
+      <a href="https://x.com/adi3www" target="_blank" rel="noopener">x</a><span class="sep">|</span><a href="https://t.me/adi3wwwfun" target="_blank" rel="noopener">telegram</a><span class="sep">|</span><span class="dd"><button type="button" class="dd-btn" aria-expanded="false" aria-controls="pump-menu">pump.fun</button><span class="dd-menu" id="pump-menu"><a href="https://pump.fun/u/adi3www" target="_blank" rel="noopener">pump.fun app</a><a href="https://trade.padre.gg/rk/adi3www" target="_blank" rel="noopener">terminal</a></span></span><noscript><a href="https://pump.fun/u/adi3www" target="_blank" rel="noopener">pump.fun app</a><span class="sep">|</span><a href="https://trade.padre.gg/rk/adi3www" target="_blank" rel="noopener">terminal</a></noscript><span class="sep">|</span><a href="https://t.me/based_eth_bot?start=r_adi3www" target="_blank" rel="noopener">basedbot</a>
     </p>
   </main>
 
